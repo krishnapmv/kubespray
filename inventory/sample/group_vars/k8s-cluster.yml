@@ -50,6 +50,11 @@ kube_users:
 #kube_basic_auth: false
 #kube_token_auth: false
 
+## enable auditing
+kube_api_audit: true
+kube_audit_policy_file: "{{ kube_config_dir }}/audit-policy.yaml"
+kube_audit_log_format: legacy
+kube_audit_log_path: "-"
 
 ## Variables for OpenID Connect Configuration https://kubernetes.io/docs/admin/authentication/
 ## To use OpenID you have to deploy additional an OpenID Provider (e.g Dex, Keycloak, ...)

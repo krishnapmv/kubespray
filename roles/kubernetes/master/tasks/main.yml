@@ -12,6 +12,11 @@
 - import_tasks: users-file.yml
   when: kube_basic_auth|default(true)
 
+- name: Include API Audit policy
+  template:
+    src: audit-policy.yaml.j2
+    dest: "{{ kube_config_dir }}/audit-policy.yaml"
+
 - name: Compare host kubectl with hyperkube container
   command: "{{ docker_bin_dir }}/docker run --rm -v {{ bin_dir }}:/systembindir {{ hyperkube_image_repo }}:{{ hyperkube_image_tag }} /usr/bin/cmp /hyperkube /systembindir/kubectl"
   register: kubectl_task_compare_result
